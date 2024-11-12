@@ -1,8 +1,10 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
+import { toast } from "react-toastify";
 
 const Login = () => {
+  const navigate = useNavigate();
   const { signInUser } = useContext(AuthContext);
   const handleLogin = (e) => {
     e.preventDefault();
@@ -11,11 +13,11 @@ const Login = () => {
     console.log(email, password);
     signInUser(email, password).then((result) => {
       const user = result.user;
-      console.log('Sign in user information:',user);
+      console.log("Sign in user information:", user);
+      toast.success("Sign in succesfully");
+      e.target.reset();
+      navigate("/");
     });
-
-   
-
   };
   return (
     <div>

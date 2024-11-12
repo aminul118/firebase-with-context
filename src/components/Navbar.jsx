@@ -16,6 +16,11 @@ const Navbar = () => {
       <li>
         <NavLink to={`/register`}>Register</NavLink>
       </li>
+      {user && (
+        <li>
+          <NavLink to={`/orders`}>Orders</NavLink>
+        </li>
+      )}
     </>
   );
   return (
@@ -58,12 +63,12 @@ const Navbar = () => {
             {user ? (
               <div className="flex items-center gap-4">
                 {user.email}
-                <a onClick={handleSignOut} className="btn btn-primary" href="">
+                <a onClick={handleSignOut} className="btn btn-primary">
                   Sign out
                 </a>
               </div>
             ) : (
-              <Link className="btn" to={"/login"}>
+              <Link className="btn btn-primary" to={"/login"}>
                 Login
               </Link>
             )}
